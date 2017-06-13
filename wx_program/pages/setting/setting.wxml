@@ -1,0 +1,39 @@
+<view class="container">
+    <!--未登录登录-->
+    <view hidden="{{!loginStatus?true:false}}" class="header flex-column">
+        <view class="header-view bgf" bindtap="userLogin"></view>
+        <text class="header-name">授权登录</text>
+        <image class="header-bg" src="../../images/setting_bg.png"></image>
+    </view>
+    <!--登录后-->
+    <view hidden="{{loginStatus?true:false}}" class="header flex-column">
+        <view class="header-view" bindtap="changeHead"><image class="header-img" src="{{headImg}}"></image></view>
+        <text class="header-name">{{nickName}}</text>
+        <image class="header-bg" src="../../images/setting_bg.png"></image>
+    </view>
+       
+    <view class="set-cont flex-column">
+        <navigator url="../my-refer/my-refer">
+            <view class="set-item flex-row set-refer">
+                <text class="set-text">我的内参</text>
+            </view>
+        </navigator>
+        <navigator url="../my-answer/my-answer">
+            <view class="set-item flex-row set-refer">
+                <text class="set-text">我的问答</text>
+                <!--<view class="forthwith"></view>-->
+            </view>
+        </navigator>
+        <navigator>
+            <view class="set-item flex-row set-refer">
+                <text class="set-text">免责声明</text>
+            </view>
+        </navigator>
+        <navigator>
+            <view class="set-item flex-row">
+                <text class="set-text">关于我们</text>
+            </view>
+        </navigator>   
+    </view>
+    <view hidden="true" class="set-item flex-column set-exit">退出</view>
+</view>

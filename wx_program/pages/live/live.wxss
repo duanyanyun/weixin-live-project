@@ -1,0 +1,115 @@
+@import "../comment/comment.wxss";
+@import "../../wxParse/wxParse.wxss";
+
+scroll-view{height: 100%;padding-bottom: 50px;box-sizing: border-box;}
+.wrap{padding: 0 13px 0;}
+.wrap-item{margin-bottom: 20px;}
+.timer{margin: 7px 0 10px;}
+.timer-text{
+  line-height: 15px;
+  padding: 0 6px;
+  font-size: 11px;
+  color: #fff;
+  border-radius: 3px;
+  background-color: #cecece;
+}
+.head-bg{
+  width: 40px;
+  height: 40px;
+  margin-right: 9px;
+}
+.head-img{
+  width: 40px;
+  height: 40px;
+}
+.th-bg{
+  position: absolute;
+  left: -7px;
+  top: -7px;
+}
+.th-icon{
+  width: 16px;
+  height: 16px;
+}
+.user-name{
+  font-size: 12px;
+  padding-left: 3px;
+  height: 20px;
+}
+.th-cont,.user-cont{
+  max-width: 550rpx;
+  min-height: 39px;
+  color: #333;
+  padding: 6px 8px 4px 8px;
+  border-radius:5px; 
+  font-size: 16px;
+  line-height: 27px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  position: relative;
+}
+.th-cont image,.user-cont image{
+  max-width: 100%;
+  vertical-align: -5px
+}
+.th-cont::before,.th-cont::after{
+  content: '';
+  position: absolute;
+  left: -9px;
+  top: 14px;
+  border: 4px solid transparent;
+  border-right-color:#ccc; 
+}
+.th-cont::after{
+  left: -8px;
+  border-right-color:#fff; 
+}
+.user-interaction{flex-direction: row-reverse;}
+.user-header-bg{margin: 0 0 0 9px;}
+.user-cont::before,.user-cont::after{
+  content: '';
+  position: absolute;
+  right: -9px;
+  top: 14px;
+  border: 4px solid transparent;
+  border-left-color:#ccc; 
+}
+.user-cont::after{
+  right: -8px;
+  border-left-color:#fff; 
+}
+.user-name-r{text-align: right;padding:0 3px 0 0;}
+/*我的*/
+.myself-bgc{background-color:#e7ce5a;border-color: #e7b45a;}
+.myself-bgc::before{border-left-color:#e7b45a;}
+.myself-bgc::after{border-left-color:#e7ce5a;}
+/*礼物*/
+.gift-text{font-size: 15px;width: 380rpx;padding-right: 26rpx;min-height: 64px;}
+.gift-th{color:#da2825;}
+.lh22{line-height: 22px;}
+.gift-cont{
+  width: 65px;
+}
+.gift-cont-in{
+  width: 65px;
+  height: 64px;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  margin-top:-32px; 
+}
+.gift-bg{
+  width: 65px;
+  height: 64px;
+}
+.gift{
+  width: 32px;
+  height: 32px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin: -16px 0 0 -16px;
+}
+.omg{color:#074198;}
+.wxParse-img{ display: block}
+.face-img{display: inline-block}

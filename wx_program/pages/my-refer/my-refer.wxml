@@ -1,0 +1,23 @@
+<view class="container">
+    <!--暂无内容-->
+    <view hidden="{{myRefer.length>0}}" class="no-data flex-column">
+        <view><image src="../../images/no_data_01.png"></image></view>
+        <text>暂无内容</text>
+    </view>
+
+    <view class="refer-wrap">
+        <!--我的内参-->
+        <view class="refer-table">
+            <view wx:for="{{myRefer}}" wx:key="unique" class="refer-item flex-column">
+                <text class="refer-header">{{item.title}}</text>
+                    <text class="timer">{{item.created_at}}</text>
+                    <image  wx:if="{{item.img!=null&&item.img.length>0}}"  class="refer-img" mode="widthFix" src="{{imgUrl+item.img}}"></image>
+                    <view class="refer-text">{{item.summary==null?"":item.summary}}</view>
+                    <view bindtap="clickReference" data-rid="{{ item.reference_id }}" class="purchase"><text class="read-text">阅读全文</text></view>
+            </view>
+            
+        </view>
+        
+
+    </view>
+</view>

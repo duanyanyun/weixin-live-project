@@ -1,0 +1,14 @@
+<!--index.wxml-->
+<view class="container">
+    <image class="live-bg" mode="widthFix" src="../../images/live_bg_01.jpg"></image>
+    <view class="content flex-column">
+        <view class="th-header flex-row">
+            <view class="th-header-in flex-row">
+                <image class="th-header-img" src="{{model.head_img!=undefined?imgUrl+model.head_img:''}}"></image>
+            </view>    
+        </view>
+        <view class=""><text class="th-name">{{model.nickname}}</text><text class="th-title">{{model.honor}}</text></view>
+        <view class="skill">擅长：{{model.summary}}</view>
+        <view bindtap="clickLiveBut" class="live-btn" ><image class="btn-img" src="../../images/live_btn_03.png"></image></view>
+    </view>
+</view>

@@ -1,0 +1,58 @@
+
+    <view class="menu-fixed">
+        <!--评论-->
+        <view class="comment-box clearfix">
+            <view class="comment-switch flex-row f-l" bindtap="emojiShow" hidden="{{isEmojiHide ? false : true}}"><image src="../../images/icon_input_04.png"></image></view>
+            <view class="comment-switch flex-row f-l" bindtap="emojiHide" hidden="{{isEmojiHide ? true : false}}"><image src="../../images/icon_input_05.png"></image></view>
+            <input maxlength="-1" class="import f-l" confirm-type="send" focus="{{focus}}" type="text" bindinput="inputImport" 
+            bindchange="setCoutent" bindconfirm="inputSend" bindfocus="inputFocus" value="{{content}}"  />
+            <view class="action-btn f-l" bindtap="actionShow"><image src="../../images/icon_input_03.png"></image></view>
+            <button class="send-btn f-l" hover-class="button-hover" bindtap="inputSend">发送</button>
+        </view>
+        <!--表情-->
+        <swiper class="emoji-swiper clearfix {{isEmojiShow ? 'emoji-move-out' : 'emoji-move-in'}} {{isLoad?'no-emoji-move':''}}" indicator-dots="true" indicator-color="#d6d6d6" indicator-active-color="#8b8b8b">
+            <swiper-item wx:for="{{3}}" wx:key="unique" wx:for-item="i" class="emoji-box">
+                <view wx:for="{{40}}" wx:key="unique" wx:for-item="index" class="emoji-item f-l">
+                    <image wx:if="{{(i*40+index)<(qqEmoji.length)}}" bindtap="emojiClick"  data-index="{{(i*40+index)}}" src="{{ (i*40+index)<(qqEmoji.length)? (commentUrl+'emot/qq/'+qqEmoji[(i*40+index)][1]):''  }}"></image>
+                </view>
+            </swiper-item>
+        </swiper>
+        <!--功能-->
+        <view class="action-box clearfix {{isActionShow ? 'emoji-move-out' : 'emoji-move-in'}} {{isLoadT?'no-emoji-move':''}}">
+            <view bindtap="clickPhoto" class="action-item f-l">
+                <view class="action-icon flex-row"><image src="../../images/icon_action_01.png"></image></view>
+                <text class="icon-text">照片</text>
+            </view>
+            <view class="action-item f-l" bindtap="giftShow">
+                <view class="action-icon flex-row"><image src="../../images/icon_action_03.png"></image></view>
+                <text class="icon-text">礼物</text>
+            </view>
+            <view class="action-item f-l" bindtap="tabLiveType"  data-type="1">
+                <view class="action-icon flex-row"><image src="../../images/icon_action_06.png"></image></view>
+                <text class="icon-text">只看老师</text>
+            </view>
+            <view class="action-item f-l" bindtap="tabLiveType"  data-type="0">
+                <view class="action-icon flex-row"><image src="../../images/icon_action_07.png"></image></view>
+                <text class="icon-text">全部直播</text>
+            </view>
+            <view class="action-item f-l">
+                <button class="share-btn" open-type="share">
+                    <view class="action-icon flex-row"><image src="../../images/icon_action_02.png"></image></view>
+                    <text class="icon-text">分享</text>    
+                </button>
+            </view>
+        </view>
+        <!--礼物选择-->
+        <swiper class="gift-swiper {{isGiftShow ? 'emoji-move-out' : 'emoji-move-in'}} {{isLoadGift?'no-emoji-move':''}}" indicator-dots="true" indicator-color="#d6d6d6" indicator-active-color="#8b8b8b">
+            <swiper-item wx:for="{{giftCount}}" wx:key="unique" wx:for-item="i" class="gift-table">
+                <view bindtap="sendGift" wx:for="{{8}}" wx:key="unique" wx:for-item="j" class="gift-item flex-column">
+                    <view wx:if="{{(i*8+index)<(giftItems.length)}}" class="gift-head">
+                        <image wx:if="{{giftItems[(i*8+index)].type!=1}}" class="gift-icon" src="../../images/gift_icon_0{{giftItems[(i*8+index)].type-1}}.png"></image>
+                        <image class="gift-img" data-index="{{(i*8+index)}}" src="{{ (i*8+index)<(giftItems.length)? (commentUrl+'gift/score/'+giftItems[(i*8+index)].img):''  }}"  ></image>
+                    </view>
+                    <view class="gift-name">{{giftItems[(i*8+index)].gift_name}}</view>
+                </view>
+            </swiper-item>
+        </swiper>
+        
+    </view>

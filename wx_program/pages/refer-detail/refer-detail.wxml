@@ -1,0 +1,15 @@
+
+<import src="../../wxParse/wxParse.wxml"/>
+
+<view class="line"></view>
+<view class="container">
+    <view class="refer-title">{{model.title}}</view>
+    <view class="refer-timer">
+        <text class="timer">{{model.created_at}}</text>
+        <text>{{model.nickname}}</text>
+    </view>
+    <view class="refer-cont">
+       <template is="wxParse" data="{{wxParseData:referContent.nodes}}"/>
+    </view>
+</view>
+  

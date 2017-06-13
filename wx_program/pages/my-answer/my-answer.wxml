@@ -1,0 +1,42 @@
+<import src="../../wxParse/wxParse.wxml"/>
+
+
+
+<view class="container">
+    <!--暂无内容-->
+    <view hidden="{{indexArr.length>0}}" class="no-data flex-column">
+        <view><image src="../../images/no_data_01.png"></image></view>
+        <text>暂无内容</text>
+    </view>
+    <!--问答内容-->
+    <view class="answer-container">
+           <!--提问已支付可查看回答状态--> 
+        <view  wx:for="{{indexArr}}"  wx:key="unique" wx:for-item="i" class="answer-item flex-column">
+            <view class="ask-head flex-row">
+                <image class="ask-head-img" src="{{imgUrl+answerList[index].data.head_img}}"></image>
+                <view class="answer-text">{{answerList[index].data.nickname}}</view>
+                <view class="ask-timer">{{answerList[index].data.created_at}}</view>
+            </view>
+            <view class="ask-cont">
+              <template is="wxParse" data="{{wxParseData:temArray[i[0]]}}"/>
+            </view>
+            <view wx:if="{{ answerList[index].data.question!=undefined }}" class="flex-column">
+                <view class="answer-head flex-row">
+                    <image class="answer-head-img" src="{{ imgUrl+answerList[index].data.question.head_img }}"></image>
+                    <view class="answer-text">{{ answerList[index].data.question.nickname }}</view>
+                    <view class="answer-timer">{{ answerList[index].data.question.created_at }}</view>
+                </view>
+                <view class="answer-cont">
+                    <template is="wxParse" data="{{wxParseData:temArray[i[1]]}}"/>
+                    
+                </view>
+            </view>
+            
+            
+
+        </view>
+
+    </view>
+
+    
+</view>

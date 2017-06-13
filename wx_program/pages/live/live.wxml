@@ -1,0 +1,101 @@
+<import src="../../wxParse/wxParse.wxml"/>
+
+<!--index.wxml-->
+
+<!--网络不可用-->
+<view hidden="{{ isNetwork }}" class="no-net flex-row">
+    <icon type="warn" size="26"  />
+    <view class="net-text">当前网络不可用, 请检查你的网络设置</view>
+</view>
+<view class="container">
+    <scroll-view scroll-y="true"  bindscroll="messageScroll"  scroll-into-view="{{toView}}">
+        <!--内容-->
+        <view  wx:for="{{message}}" id="messageItem{{index}}"   wx:key="unique" class="wrap">
+            <!--老师观点   -->
+            <view hidden="{{!(showType==1||showType==0)||item.status!=1}}" wx:if="{{item.type==21}}" class="wrap-item">
+                <view class="timer flex-row justify"><text class="timer-text">{{item.data.created_at}}</text></view>
+                <view class="th-opinion flex-row">
+                    <view class="head-bg posr">
+                    <view wx:if="{{item.data.level>=9}}" class="th-bg">
+                        <image class="th-icon" src="../../images/th_bg_01.png"></image>
+                    </view>
+                    <image class="head-img" src="{{imgUrl+item.data.head_img}}"></image>
+                    </view>
+                    <view class="flex-column">
+                        <view class="user-name color-s666">{{item.data.nickname}}</view>
+                        <view class="th-cont">
+                           <template is="wxParse" data="{{wxParseData:temArray[index].nodes}}"/>
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <!--用户言论   -->
+            <view  hidden="{{!(showType==2||showType==0)||item.status!=1}}"  wx:if="{{item.type==40&&item.user_id!=userId}}" class="wrap-item">
+                <view class="timer flex-row justify"><text class="timer-text">{{item.data.created_at}}</text></view>
+                <view class="user-interaction flex-row flex-dire">
+                    <view class="head-bg posr user-header-bg">
+                    <view wx:if="{{item.data.level>=9}}" class="th-bg"><image class="th-icon" src="../../images/th_bg_01.png"></image></view>
+                    <image class="head-img" src="{{imgUrl+item.data.head_img}}"></image>
+                    </view>
+                    <view class="flex-column">
+                        <view class="user-name color-s666 user-name-r">{{item.data.nickname}}</view>
+                        <view class="user-cont">
+                            <template is="wxParse" data="{{wxParseData:temArray[index].nodes}}"/>
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <!--用户送礼   -->
+            <view hidden="{{!(showType==1||showType==0)||item.status!=1}}" wx:if="{{item.type==1}}" class="wrap-item">
+                <view class="timer flex-row justify"><text class="timer-text">{{item.data.created_at}}</text></view>
+                <view class="user-interaction flex-row flex-dire">
+                    <view class="head-bg posr user-header-bg">
+                      <view  wx:if="{{item.data.level>=9}}" class="th-bg"><image class="th-icon" src="../../images/th_bg_01.png"></image></view>
+                      <image class="head-img" src="{{imgUrl+item.data.head_img}}"></image>
+                    </view>
+                    <view class="flex-column">
+                        <view class="user-name color-s666 user-name-r">{{item.data.nickname}}</view>
+                        <view class="user-cont">
+                            <view class="flex-row ">
+                                <view class="gift-text color-s666 flex-column">
+                                    <view class="lh22">送<text class="gift-th">{{item.data.seller.nickname}}老师</text><text>{{item.data.item_name}}</text>！</view>
+                                    <view class="lh22">{{item.data.content}}</view>
+                                </view>
+                                <view class="gift-cont">
+                                    <view class="gift-cont-in">  
+                                        <image class="gift-bg" src="../../images/gift_show_bg_03.png"></image>
+                                        <image class="gift" src="{{commentUrl+'gift/score/'+item.data.item_img}}"></image>
+                                    </view>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <!--我的言论   -->
+            <view  hidden="{{!(showType==2||showType==0)||item.status!=1}}" wx:if="{{item.type==40&&item.user_id==userId}}" class="wrap-item">
+                <view class="timer flex-row justify"><text class="timer-text">{{item.data.created_at}}</text></view>
+                <view class="user-interaction flex-row flex-dire">
+                    <view class="head-bg posr user-header-bg">
+                        <view wx:if="{{item.data.level>=9}}" class="th-bg">
+                            <image class="th-icon" src="../../images/th_bg_01.png"></image>
+                        </view>
+                        <image class="head-img" src="{{imgUrl+item.data.head_img}}"></image>
+                    </view>
+                    <view class="flex-column">
+                        <view class="user-name color-s666 user-name-r">{{item.data.nickname}}</view>
+                        <view class="user-cont myself-bgc">
+                            <template is="wxParse" data="{{wxParseData:temArray[index].nodes}}"/>
+                        </view>
+                    </view>
+                </view>
+            </view>
+
+        </view>
+
+        <!--滚到底部id-->
+        <view id="scrollBottom"></view>
+    </scroll-view>
+</view>
+
+<include src="../comment/comment.wxml"/>

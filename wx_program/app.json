@@ -1,0 +1,52 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/live/live",
+    "pages/refer/refer",
+    "pages/answer/answer",
+    "pages/setting/setting", 
+    "pages/my-refer/my-refer",
+    "pages/my-answer/my-answer",    
+    "pages/refer-detail/refer-detail",
+    "pages/logs/logs"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "",
+    "navigationBarTextStyle":"black",
+    "backgroundColor":"#ebebeb"
+  },
+  "tabBar": {
+    "color": "#333",
+    "selectedColor": "#da2825",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black",
+    "list": [
+        {
+            "pagePath": "pages/index/index",
+            "text": "直播",
+            "iconPath": "images/icon_live.png",
+            "selectedIconPath": "images/icon_live_selected.png"
+        },
+        {
+            "pagePath": "pages/answer/answer",
+            "text": "问答",
+            "iconPath": "images/icon_answer.png",
+            "selectedIconPath": "images/icon_answer_selected.png"
+        },
+        {
+            "pagePath": "pages/refer/refer",
+            "text": "内参",
+            "iconPath": "images/icon_refer.png",
+            "selectedIconPath": "images/icon_refer_selected.png"
+        },
+        {
+            "pagePath": "pages/setting/setting",
+            "text": "我的",
+            "iconPath": "images/icon_setting.png",
+            "selectedIconPath": "images/icon_setting_selected.png"
+        }
+    ]
+  }
+}

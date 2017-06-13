@@ -1,0 +1,59 @@
+
+<view class="container">
+    <view class="nav-fixed {{isPosa?' ':'posa'}}">
+        <view class="refer-nav flex-row">
+            <view bindtap="clickTab" data-type="1" class="refer-nav-item {{ selectTab==1?'on':'' }}">全部内参</view>
+            <view bindtap="clickTab" data-type="2"  class="refer-nav-item {{ selectTab==2?'on':'' }}">我的内参</view>
+        </view>
+    </view>
+    <view class="refer-wrap" >
+
+            <!--全部内参-->
+            <view hidden="{{selectTab!=1}}" class="refer-table">
+                <!--未购买的-->
+                <view wx:for="{{allRefer}}" wx:key="unique" class="refer-item flex-column">
+                    <text class="refer-header">{{item.title}}</text>
+                    <text class="timer">{{item.created_at}}</text>
+                    <view wx:if="{{item.img!=null&&item.img.length>0}}"  class="view-img">
+                      <image class="refer-img" mode="widthFix" src="{{imgUrl+item.img}}"></image>
+                    </view>
+                    <view class="refer-text">{{item.summary==null?"":item.summary}}</view>
+                    <view wx:if="{{item.level==2}}" class="purchase flex-row">
+                        <text class="price">特价￥{{ item.price }}元</text>
+                        <button bindtap="payReference" data-rid="{{ item.reference_id }}" class="purchase-btn">立即抢购 </button>
+                    </view>
+                    <view wx:if="{{item.level==1}}" class="purchase">
+                        <text bindtap="clickReference" data-rid="{{ item.reference_id }}" class="read-text">阅读全文</text>
+                    </view>
+                </view>  
+                <!--暂无内容-->
+                <view hidden="{{allRefer.length>0}}" class="no-data flex-column">
+                    <view><image src="../../images/no_data_01.png"></image></view>
+                    <text>暂无内容</text>
+                </view>
+            </view>
+
+            <!--我的内参-->
+            <view class="refer-table" hidden="{{selectTab!=2}}" >
+
+                <view wx:for="{{myRefer}}" wx:key="unique" class="refer-item flex-column">
+                    <text class="refer-header">{{item.title}}</text>
+                    <text class="timer">{{item.created_at}}</text>
+                    <view wx:if="{{item.img!=null&&item.img.length>0}}"  class="view-img">
+                        <image  class="refer-img" mode="widthFix" src="{{imgUrl+item.img}}"></image>
+                    </view>
+                    <view class="refer-text">{{item.summary==null?"":item.summary}}</view>
+                    <view bindtap="clickReference" data-rid="{{ item.reference_id }}" class="purchase"><text class="read-text">阅读全文</text></view>
+                </view>
+
+                <!--暂无内容-->
+                <view hidden="{{myRefer.length>0}}" class="no-data flex-column">
+                    <view><image src="../../images/no_data_01.png"></image></view>
+                    <text>暂无内容</text>
+                </view>
+
+            </view>  
+
+    </view>
+</view>
+

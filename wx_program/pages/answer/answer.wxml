@@ -1,0 +1,53 @@
+<import src="../../wxParse/wxParse.wxml"/>
+
+<view class="container">
+
+    <!--问答导航-->
+    <view class="answer-nav">
+        <view class="answer-box flex-column">
+            <view class="answer-menu flex-row">
+                <view bindtap="selectTab" data-type="1" class="menu-item {{answerTab==1?'cur':''}}">公开提问</view>
+                <view  class="menu-line"></view>
+                <view bindtap="selectTab" data-type="0" class="menu-item {{answerTab==0?'cur':''}}">私密提问</view>
+                <view class="menu-line"></view>
+                <navigator url="../my-answer/my-answer" class="menu-item">我的问答</navigator>
+            </view>
+            <view class="answer-line"></view>
+            <!--提问框-->
+            <view class="ask-box {{answerTab==1?' ':'ask-box-t'}}">
+                <textarea bindinput="textValue" maxlength="-1" placeholder="[{{answerTab==1?'公开提问':'私密提问'}}]输入你的问题，超过48小时未回答，将全额退款。" value="{{textContent}}" />
+            </view>
+
+            <button class="ask-btn" bindtap="askBtn">确认提问（支付 ¥ {{askPrice}}）</button>
+        </view>
+    </view>
+
+    <!--问答内容-->
+    <view class="answer-container" >
+            <!--提问已支付可查看回答状态--> 
+            <view wx:for="{{indexArr}}"  wx:key="unique" wx:for-item="i" data-qid="{{answerList[index].sn}}" class="answer-item flex-column">
+                <view class="ask-head flex-row">
+                    <image class="ask-head-img" src="{{imgUrl+answerList[index].data.head_img}}"></image>
+                    <view class="answer-text">{{answerList[index].data.nickname}}</view>
+                    <view class="ask-timer">{{answerList[index].data.created_at}}</view>
+                </view>
+                <view class="ask-cont">
+                    <template is="wxParse" data="{{wxParseData:temArray[i[0]].nodes}}"/>
+                </view>
+                <view wx:if="{{ answerList[index].data.answer!=undefined&&answerList[index].is_pay==1}}" class="flex-column">
+                    <view class="answer-head flex-row">
+                        <image class="answer-head-img" src="{{ imgUrl+answerList[index].data.answer.head_img }}"></image>
+                        <view class="answer-text">{{ answerList[index].data.answer.nickname }}</view>
+                        <view class="answer-timer">{{ answerList[index].data.answer.created_at }}</view>
+                    </view>
+                    <view class="answer-cont">
+                        <template is="wxParse" data="{{wxParseData:temArray[i[1]].nodes}}"/>
+                    </view>
+                </view>
+                <button data-index="{{index}}" bindtap="getAnswerClick" wx:if="{{ answerList[index].is_pay==0&&answerList[index].data.price>0}}"  class="ask-btn">查看回答 只需支付¥{{answerList[index].data.price-10}}元</button>
+               
+            </view>
+    </view>
+
+    
+</view>
